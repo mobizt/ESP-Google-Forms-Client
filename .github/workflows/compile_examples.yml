@@ -26,6 +26,7 @@ jobs:
         - "examples/Watches/DeleteWatch/DeleteWatch.ino"
         - "examples/Watches/ListWatch/ListWatch.ino"
         - "examples/Watches/ListWatchID/ListWatchID.ino"
+        - "examples/Watches/RenewWatch/RenewWatch.ino"
      
 
     steps:
@@ -77,6 +78,7 @@ jobs:
         - "examples/Watches/DeleteWatch/DeleteWatch.ino"
         - "examples/Watches/ListWatch/ListWatch.ino"
         - "examples/Watches/ListWatchID/ListWatchID.ino"
+        - "examples/Watches/RenewWatch/RenewWatch.ino"
     steps:
     - uses: actions/checkout@v2
     - name: Cache pip
