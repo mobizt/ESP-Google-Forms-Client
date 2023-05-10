@@ -1,0 +1,16 @@
+{
+  "name": "ESP-Google-Forms-Client",
+  "version": "1.0.0",
+  "keywords": "communication, REST, esp32, esp8266, raspberrypi, arduino",
+  "description": "Arduino Google Forms REST client library for ESP8266, ESP32 and Raspberry Pi Pico (RP2040). This library allows devices to communicate with Google Forms API to create, read, edit and delete the form",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mobizt/ESP-Google-Forms-Client.git"
+  },
+  "authors": [{
+    "name": "Mobizt",
+    "email": "suwatchai@outlook.com"
+  }],
+  "frameworks": "arduino",
+  "platforms": "espressif32, espressif8266, rp2040"
+}

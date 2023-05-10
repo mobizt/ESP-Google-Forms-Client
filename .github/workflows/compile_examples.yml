@@ -1,0 +1,115 @@
+name: Compile examples
+
+on:
+  push:
+    paths-ignore:
+      - '.github/workflows/cpp_lint.yml'
+      - '.github/workflows/compile_library.yml'
+  pull_request:
+    paths-ignore:
+      - '.github/workflows/cpp_lint.yml'
+      - '.github/workflows/compile_library.yml'
+
+jobs:
+  esp8266:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example: 
+        - "examples/Forms/CreateUpdate/CreateUpdate.ino"
+        - "examples/Forms/GetForm/GetForm.ino"
+        - "examples/Responses/GetResponse/GetResponse.ino"
+        - "examples/Responses/ListResponseID/ListResponseID.ino"
+        - "examples/Responses/ListResponses/ListResponses.ino"
+        - "examples/Watches/CreateWatch/CreateWatch.ino"
+        - "examples/Watches/DeleteWatch/DeleteWatch.ino"
+        - "examples/Watches/ListWatch/ListWatch.ino"
+        - "examples/Watches/ListWatchID/ListWatchID.ino"
+        - "examples/Watches/RenewWatch/RenewWatch.ino"
+     
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+    - name: Cache PlatformIO
+      uses: actions/cache@v2
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade platformio
+    - name: Install 3rd party dependecies
+      run: | 
+        pio lib -g install \
+        https://github.com/mobizt/ESP-Google-Forms-Client
+        
+    - name: update library
+      run: |
+        pio lib --global update
+
+    - name: Run PlatformIO Examples
+      run: |
+        pio ci --board=d1_mini 
+      env:
+        PLATFORMIO_CI_SRC: ${{ matrix.example }}
+
+  esp32:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example: 
+        - "examples/Forms/CreateUpdate/CreateUpdate.ino"
+        - "examples/Forms/GetForm/GetForm.ino"
+        - "examples/Responses/GetResponse/GetResponse.ino"
+        - "examples/Responses/ListResponseID/ListResponseID.ino"
+        - "examples/Responses/ListResponses/ListResponses.ino"
+        - "examples/Watches/CreateWatch/CreateWatch.ino"
+        - "examples/Watches/DeleteWatch/DeleteWatch.ino"
+        - "examples/Watches/ListWatch/ListWatch.ino"
+        - "examples/Watches/ListWatchID/ListWatchID.ino"
+        - "examples/Watches/RenewWatch/RenewWatch.ino"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: ${{ runner.os }}-pip-
+    - name: Cache PlatformIO
+      uses: actions/cache@v2
+      with:
+        path: ~/.platformio
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade platformio
+
+    - name: Install 3rd party dependecies
+      run: | 
+        pio lib -g install \
+        https://github.com/mobizt/ESP-Google-Forms-Client
+        
+    - name: update library
+      run: |
+        pio lib --global update
+
+    - name: Run PlatformIO Examples
+      run: |
+        pio ci --board=esp32dev 
+      env:
+        PLATFORMIO_CI_SRC: ${{ matrix.example }}

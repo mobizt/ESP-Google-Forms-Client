@@ -1,0 +1,47 @@
+###################################################
+# Syntax Coloring Map ESP-Google-Forms-Client
+###################################################
+
+#########################################
+# Classes (KEYWORD1)
+#########################################
+
+GForms KEYWORD1
+TokenInfo   KEYWORD1
+
+##################################
+# Methods and Functions (KEYWORD2)
+##################################
+
+begin   KEYWORD2
+setTokenCallback    KEYWORD2
+ready   KEYWORD2
+createForm  KEYWORD2
+batchUpdate KEYWORD2
+getForm KEYWORD2
+listResponses   KEYWORD2
+getResponseIDList   KEYWORD2
+getResponse KEYWORD2
+createWatch KEYWORD2
+getWatchIDList  KEYWORD2
+deleteWatch KEYWORD2
+listWatches KEYWORD2
+renewWatch  KEYWORD2
+
+getTokenType    KEYWORD2
+getTokenStatus  KEYWORD2
+getTokenError   KEYWORD2
+accessToken KEYWORD2
+getExpiredTimestamp KEYWORD2
+sdBegin KEYWORD2
+sdMMCBegin  KEYWORD2
+setCert KEYWORD2
+setCertFile KEYWORD2
+setExternalClient   KEYWORD2
+setUDPClient    KEYWORD2
+addAP   KEYWORD2
+clearAP KEYWORD2
+setPrerefreshSeconds    KEYWORD2
+refreshToken    KEYWORD2
+reset   KEYWORD2
+
